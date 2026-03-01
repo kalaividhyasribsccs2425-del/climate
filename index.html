@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>College Enquiry Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .chat-container {
+            width: 400px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #007BFF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .chat-box {
+            height: 300px;
+            padding: 10px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .chat-box p {
+            margin: 8px 0;
+        }
+
+        .user {
+            text-align: right;
+            color: blue;
+        }
+
+        .bot {
+            text-align: left;
+            color: green;
+        }
+
+        .chat-input {
+            display: flex;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .chat-input button {
+            padding: 10px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">
+        College Enquiry Chatbot
+    </div>
+
+    <div class="chat-box" id="chatBox">
+        <p class="bot">Hello! Ask me about courses, fees, admission, or contact details.</p>
+    </div>
+
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your question...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+    function sendMessage() {
+        let input = document.getElementById("userInput").value;
+        let chatBox = document.getElementById("chatBox");
+
+        if (input.trim() === "") return;
+
+        // Display user message
+        chatBox.innerHTML += "<p class='user'>" + input + "</p>";
+
+        // Simple bot response logic
+        let response = "Sorry, I don't understand.";
+
+        if (input.toLowerCase().includes("course")) {
+            response = "We offer BCA, B.Sc, B.Com, and MBA programs.";
+        }
+        else if (input.toLowerCase().includes("fees")) {
+            response = "Fees vary by course. Please visit the admission office for details.";
+        }
+        else if (input.toLowerCase().includes("admission")) {
+            response = "Admissions are open! Apply online through our website.";
+        }
+        else if (input.toLowerCase().includes("contact")) {
+            response = "You can contact us at +91-9876543210.";
+        }
+
+        // Display bot response
+        chatBox.innerHTML += "<p class='bot'>" + response + "</p>";
+
+        document.getElementById("userInput").value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
