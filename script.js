@@ -1,4 +1,4 @@
-const apiKey = "YOUR_REAL_API_KEY";
+const apiKey = "abcd1234yourrealkey5678";
 
 async function getWeather() {
 
@@ -9,7 +9,7 @@ async function getWeather() {
         return;
     }
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const url = https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_KEY&units=metric
 
     try {
 
