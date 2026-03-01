@@ -6,22 +6,23 @@ async function getWeather() {
 
     try {
         const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error("City not found!");
-        }
-
         const data = await response.json();
 
+        if (data.cod != 200) {
+            document.getElementById("result").innerHTML =
+                <p style="color:red;">${data.message}</p>;
+            return;
+        }
+
         document.getElementById("result").innerHTML = `
-            <h3>${data.name}</h3>
-            <p>🌡 Temperature: ${data.main.temp} °C</p>
-            <p>💧 Humidity: ${data.main.humidity}%</p>
-            <p>🌬 Wind: ${data.wind.speed} m/s</p>
+            <h2>${data.name}</h2>
+            <p>🌡 Temp: ${data.main.temp} °C</p>
             <p>☁ Weather: ${data.weather[0].description}</p>
+            <p>💧 Humidity: ${data.main.humidity}%</p>
         `;
     } catch (error) {
         document.getElementById("result").innerHTML =
-            <p style="color:red;">${error.message}</p>;
+            <p style="color:red;">Error loading data</p>;
     }
 }
+       
