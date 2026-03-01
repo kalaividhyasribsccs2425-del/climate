@@ -1,88 +1,79 @@
-/* General Page Styling */
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #4facfe, #00f2fe);
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
 }
 
-/* Chat Container */
-.chat-container {
-    width: 400px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-}
-
-/* Header */
-.chat-header {
-    background: #007BFF;
-    color: white;
-    padding: 15px;
+/* Main Container */
+.weather-container {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     text-align: center;
-    font-size: 18px;
-    font-weight: bold;
 }
 
-/* Chat Messages Area */
-.chat-box {
-    height: 300px;
-    padding: 10px;
-    overflow-y: auto;
-    border-bottom: 1px solid #ddd;
+/* Heading */
+.weather-container h1 {
+    margin-bottom: 20px;
+    color: #2a5298;
 }
 
-/* Messages */
-.chat-box p {
-    margin: 8px 0;
-    padding: 8px;
-    border-radius: 6px;
-    max-width: 75%;
-}
-
-/* User Message */
-.user {
-    background-color: #d1e7ff;
-    text-align: right;
-    margin-left: auto;
-    color: #003366;
-}
-
-/* Bot Message */
-.bot {
-    background-color: #e2f7e2;
-    text-align: left;
-    margin-right: auto;
-    color: #006600;
-}
-
-/* Input Section */
-.chat-input {
+/* Search Box */
+.search-box {
     display: flex;
+    margin-bottom: 20px;
 }
 
-/* Input Field */
-.chat-input input {
+.search-box input {
     flex: 1;
     padding: 10px;
-    border: none;
+    border-radius: 8px 0 0 8px;
+    border: 1px solid #ccc;
     outline: none;
 }
 
-/* Send Button */
-.chat-input button {
+.search-box button {
     padding: 10px 15px;
     border: none;
-    background: #007BFF;
+    background: #2a5298;
     color: white;
+    border-radius: 0 8px 8px 0;
     cursor: pointer;
     transition: 0.3s;
 }
 
-.chat-input button:hover {
-    background: #0056b3;
+.search-box button:hover {
+    background: #1e3c72;
+}
+
+/* Weather Info */
+.weather-info h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.weather-info p {
+    margin: 6px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .weather-container {
+        width: 90%;
+    }
 }
