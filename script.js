@@ -1,38 +1,36 @@
-// Replace with your own OpenWeather API Key
-const apiKey = "YOUR_API_KEY_HERE";
+const apiKey = "YOUR_REAL_API_KEY";
 
-function getWeather() {
+async function getWeather() {
 
     const city = document.getElementById("cityInput").value;
 
-    if (city === "") {
+    if (!city) {
         alert("Please enter a city name");
         return;
     }
 
-    const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    try {
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+        );
 
-    fetch(apiURL)
-        .then(response => response.json())
-        .then(data => {
+        if (!response.ok) {
+            throw new Error("City not found");
+        }
 
-            if (data.cod === "404") {
-                alert("City not found");
-                return;
-            }
+        const data = await response.json();
 
-            document.getElementById("cityName").innerText = data.name;
-            document.getElementById("temperature").innerText =
-                "Temperature: " + data.main.temp + "°C";
-            document.getElementById("description").innerText =
-                "Condition: " + data.weather[0].description;
-            document.getElementById("humidity").innerText =
-                "Humidity: " + data.main.humidity + "%";
-            document.getElementById("windSpeed").innerText =
-                "Wind Speed: " + data.wind.speed + " km/h";
-        })
-        .catch(error => {
-            alert("Error fetching data");
-            console.log(error);
-        });
+        document.getElementById("cityName").innerText = data.name;
+        document.getElementById("temperature").innerText =
+            `Temperature: ${data.main.temp} °C`;
+        document.getElementById("description").innerText =
+            `Condition: ${data.weather[0].description}`;
+        document.getElementById("humidity").innerText =
+            `Humidity: ${data.main.humidity}%`;
+        document.getElementById("windSpeed").innerText =
+            `Wind Speed: ${data.wind.speed} km/h`;
+
+    } catch (error) {
+        alert("Error: " + error.message);
+    }
 }
